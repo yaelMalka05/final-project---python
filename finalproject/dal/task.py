@@ -12,6 +12,17 @@ class Task:
          self.skill = skill
          self.people = peopleArr
 
+    def to_dict(self):
+        return {
+            "code": self.code,
+            "description": self.description,
+            "status": self.status,
+            "level": self.level,
+            "time": self.time,
+            "skill": self.skill,
+            "people": [p.to_dict() for p in self.people]
+        }
+
     def print_details(self):
         print(f"code: {self.code}, description: {self.description}, status: {self.status}, level: {self.level}, time: {self.time}, skill: {self.skill}, people: {[p.name for p in self.people]}")
 

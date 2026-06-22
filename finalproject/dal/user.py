@@ -6,7 +6,11 @@ class User:
         self.name = name
         self.phone = phone
         self.email = email
-        self.role = role  # "admin" or "employee"
+        self.role = role
+        self._tasks = []
+
+    def to_dict(self):
+        return {"id": self.id, "name": self.name, "phone": self.phone, "email": self.email, "role": self.role}
 
     def print_details(self):
         print(f"id: {self.id}, name: {self.name}, phone: {self.phone}, email: {self.email}, role: {self.role}")

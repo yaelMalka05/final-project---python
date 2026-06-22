@@ -14,6 +14,14 @@ def get_all_users() -> list[User]:
     return [_row_to_user(row) for row in cursor.fetchall()]
 
 
+def get_user_by_name(name: str) -> User | None:
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name, password, phone, email, role FROM users WHERE name = ?", name)
+    row = cursor.fetchone()
+    return _row_to_user(row) if row else None
+
+
 def get_user(id: int) -> User | None:
     conn = get_connection()
     cursor = conn.cursor()

@@ -65,6 +65,7 @@ def update_task(task: Task) -> bool:
 def delete_task(code: int) -> bool:
     conn = get_connection()
     cursor = conn.cursor()
+    cursor.execute("DELETE FROM project_tasks WHERE task_code = ?", code)
     cursor.execute("DELETE FROM task_people WHERE task_code = ?", code)
     cursor.execute("DELETE FROM tasks WHERE code = ?", code)
     conn.commit()
